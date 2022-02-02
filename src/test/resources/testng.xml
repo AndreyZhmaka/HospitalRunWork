@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Hospital" parallel="methods" data-provider-thread-count="5" thread-count="3">
+    <test name="test">
+       <classes>
+           <class name="tests.HospitalRunTests">
+               <methods>
+<!--                   <include name="someTest11"/>-->
+                   <include name="someTest22"/>
+               </methods>
+           </class>
+       </classes>
+    </test>
+</suite>
