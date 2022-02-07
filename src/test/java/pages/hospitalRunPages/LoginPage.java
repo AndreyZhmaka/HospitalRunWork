@@ -23,6 +23,8 @@ public class LoginPage extends BasePage {
     @FindBy(className = "form-signin-heading")
     public WebElement loginFormTitle;
 
+    private By alertNotificationLocator = By.className("alert");
+
     public String loginPageUrl = Project.config.baseUrl() + Project.config.loginPagePath();
 
     public LoginPage(WebDriver driver) {
@@ -42,7 +44,7 @@ public class LoginPage extends BasePage {
     }
 
     public String getTextAlertNotification() {
-        return getDriver().findElement(By.className("alert")).getText();
+        return getDriver().findElement(alertNotificationLocator).getText();
     }
 
     public boolean waitForPresent() {

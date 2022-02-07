@@ -50,30 +50,14 @@ public class MedicationEditPage extends BasePage {
     @FindBy(xpath = "//button[text() = 'Ok']")
     public WebElement submitModalButton;
 
+    private By dateLocator = By.xpath("//option[contains(@value,'hospitalrun')]");
+    private By modalTitleLocator = By.className("modal-title");
+
     public MedicationEditPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    //    @Step("Select patient name")
-//    public void fillPatientField(String userName, String userFromAvailableList) {
-//        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-//        patientField.sendKeys(userName);
-//        String userNameForXpath = "'" + userName + "'";
-//        String userNameFromListForXpath = "'" + userFromAvailableList + "'";
-//
-//        while (true) {
-//            List<WebElement> listOfPatients = getDriver().findElements(By.xpath("//pre[text()=" + userNameForXpath + "]"));
-//            if (listOfPatients.size() > 0) {
-//                getDriver().findElement(By.xpath("//div[text() = " + userNameFromListForXpath + "]")).click();
-//                break;
-//            } else {
-//                patientField.sendKeys(Keys.SPACE);
-//                patientField.sendKeys(Keys.BACK_SPACE);
-//            }
-//        }
-//    }
-//
     @Step("Select patient name")
     public void fillPatientField(String userName, String userFromAvailableList) {
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
@@ -101,7 +85,7 @@ public class MedicationEditPage extends BasePage {
     public void selectAnyFreeDateForVisit() {
         Select select = new Select(visitList);
         select.selectByIndex(0);
-        getDriver().findElement(By.xpath("//option[contains(@value,'hospitalrun')]")).isEnabled();
+        getDriver().findElement(dateLocator).isEnabled();
         select.selectByIndex(1);
     }
 
@@ -120,11 +104,11 @@ public class MedicationEditPage extends BasePage {
     }
 
     public Boolean waitForTextInModalTitle(String titleText) {
-        return getWait().until(ExpectedConditions.textToBe(By.className("modal-title"), titleText));
+        return getWait().until(ExpectedConditions.textToBe(modalTitleLocator, titleText));
     }
 
     public Boolean isModalNotPresent() {
-        List<WebElement> list = getDriver().findElements(By.className("modal-title"));
+        List<WebElement> list = getDriver().findElements(modalTitleLocator);
         return list.size() == 0;
     }
 }
