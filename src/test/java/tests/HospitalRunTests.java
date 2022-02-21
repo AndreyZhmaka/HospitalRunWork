@@ -106,10 +106,4 @@ public class HospitalRunTests extends BaseTest {
         browser.hospitalRun().loginPage().open();
         browser.hospitalRun().loginPage().submitLoginFormWithData(username,password);
     }
-
-    @Test(invocationCount = 5,threadPoolSize = 5)
-    public void someTest22() throws InterruptedException {
-        browser.hospitalRun().loginPage().open();
-        sleep(1000);
-    }
 }
