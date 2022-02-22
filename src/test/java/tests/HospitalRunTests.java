@@ -107,3 +107,4 @@ public class HospitalRunTests extends BaseTest {
         browser.hospitalRun().loginPage().submitLoginFormWithData(username,password);
     }
 }
+
